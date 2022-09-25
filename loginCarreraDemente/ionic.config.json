@@ -1,0 +1,7 @@
+{
+  "name": "loginCarreraDemente",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
