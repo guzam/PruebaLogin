@@ -25,6 +25,16 @@
 #container a {
   text-decoration: none;
 }
+#contrasena {
+  text-align: center;
+  font-family: inherit;
+  font-size: 14px;
+  position: absolute;
+  left: 35%;
+  right: 35%;
+  top: 70%;
+  background-color: inherit;
+}
 
 .loginbutton {
   font-family: inherit;
@@ -50,6 +60,14 @@
     top: 50%;
     transform: translateY(-50%);
   } 
+  #contrasena {
+    text-align: center;
+  
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    top: 70%;
+  }
 }
 
 @media screen and (min-width: 761px) and (max-width: 990px){
