@@ -29,14 +29,14 @@ export class HomePage {
     const elementosresp = document.getElementsByClassName('tohide')
     for (let i = 0; i<elementosresp.length; i++)
     {
-      const elemhtml = elementosresp[i] as HTMLElement;
-      elemhtml.style.display = 'none';
+      const resphtml = elementosresp[i] as HTMLElement;
+      resphtml.style.display = 'none';
     }
     const elementosnewpass = document.getElementsByClassName('toshow')
     for (let i = 0; i<elementosnewpass.length; i++)
     {
-      const elemhtml = elementosnewpass[i] as HTMLElement;
-      elemhtml.style.display = 'block';
+      const passhtml = elementosnewpass[i] as HTMLElement;
+      passhtml.style.display = 'block';
     }
   }
 
