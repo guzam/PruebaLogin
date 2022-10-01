@@ -50,6 +50,22 @@
   background-color: #6399f7;
 }
 
+.toshow {
+  display: none;
+  font-size: 14px;
+  width: 230px;
+}
+
+.tohide {
+  display: block;
+}
+
+#label {
+  font-size: 14px;
+  width: 230px;
+}
+
+
 @media screen and (max-width: 760px) {
   #container {
     text-align: center;
