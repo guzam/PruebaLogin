@@ -20,7 +20,7 @@ export class DadoPage implements OnInit {
   const time = 2;
   const btnverpregunta = document.querySelector('#btnverpregunta');
   const btnsalir = document.querySelector('#btnsalir');
-  let centena = document.getElementById("centena") as HTMLInputElement;
+  let centena = document.getElementById("centena");
   let decena = document.getElementById("decena") as HTMLInputElement;
   let unidad = document.getElementById("unidad") as HTMLInputElement;
   let verPregunta = document.getElementById("btnverpregunta");
@@ -42,9 +42,9 @@ dado.addEventListener('click', () => {
 
       function giradado() {
           
-          if (centena?.value == "") {
-              centena.value = randomValue.toString();
-              console.log(centena?.value)
+          if (centena["value"] == "") {
+              centena["value"] = randomValue;
+              console.log(centena["value"])
               mostrarCentena = randomValue;
           } 
           else { 
@@ -111,7 +111,7 @@ function restraso (){
   
 
 function mostrarResultados() {
-  if (centena?.value == mostrarCentena) {
+  if (centena["value"] == mostrarCentena) {
    
       centena.style.visibility = "visible";
       mostrarCentena = 0;
@@ -141,7 +141,7 @@ function mostrarResultados() {
 //Evento al hacer click en boton Ver Pregunta
 btnverpregunta.addEventListener('click', () => {
  
-  nroPregunta = centena?.value + decena?.value + unidad?.value;
+  nroPregunta = centena["value"] + decena?.value + unidad?.value;
   console.log(nroPregunta);
   window.alert("Pregunta numero " + nroPregunta);
 
