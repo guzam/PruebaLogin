@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'dado',
+    loadChildren: () => import('./dado/dado.module').then( m => m.DadoPageModule)
   },
+
 ];
 
 @NgModule({

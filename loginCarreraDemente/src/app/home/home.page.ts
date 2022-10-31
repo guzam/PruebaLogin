@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
+import {Router} from '@angular/router';
+
 
 
 @Component({
@@ -9,11 +11,16 @@ import { IonModal } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private router:Router) {}
   @ViewChild(IonModal) modal: IonModal;
+
 
   message = '';
   respuesta: string;
+
+  gotodado() {
+    this.router.navigateByUrl('/dado');
+  }
 
   cancelar() {
     this.modal.dismiss(null, 'cancel');
