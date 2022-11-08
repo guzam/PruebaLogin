@@ -151,18 +151,18 @@ export class DadoPage implements OnInit {
       }
     };
 
-    //Evento al hacer click en botón Salir
+    //Evento al hacer click en boton "Salir"
     btnsalir.addEventListener('click', () => {
 
       this.salir();
 
     });
 
-    //Evento al hacer click en boton Ver Pregunta
+    //Evento al hacer click en boton "Ver Pregunta"
     btnverpregunta.addEventListener('click', () => {
       valoresPregunta();
       if (color != 0) {
-        console.log(nroPregunta, color);
+        console.log(nroPregunta, color); //valores para hacer la consulta en DB
         leerpregunta();
       } else {
         window.alert("Debe seleccionar un color");
@@ -173,13 +173,14 @@ export class DadoPage implements OnInit {
 
 
     });
-
+    //Numero de pregunta y color de libro
     function valoresPregunta() {
       color = vercolor["value"];
       nroPregunta = centena["value"] + decena?.value + unidad?.value;
 
     }
 
+    //Muestra pregunta en pantalla, los valores los debe tomar de la DB
     function leerpregunta() {
       verpreguntaenhtml["value"] = "La vaca es un animal todo forrado de cuero que tiene las patas tan largas que le llegan hasta el suelo. Cuando se muera mi suegra que la entierren boca abajo, por si se quiere salir, que se vaya para abajo. En el lago Titicaca hay una vieja costumbre, para calentar la leche se prende fuego a la vaca";
       opcion1["value"] = "Valor de la op. 1 de la DB";
@@ -199,6 +200,7 @@ export class DadoPage implements OnInit {
     }
 
 
+    //Evento al hacer click en el boton "Seleccionar Respuesta"
     btnselrespuesta.addEventListener('click', () => {
 
       respuestaseleccionada()
