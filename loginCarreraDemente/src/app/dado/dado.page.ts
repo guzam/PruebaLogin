@@ -18,17 +18,20 @@ export class DadoPage implements OnInit {
   
   const dado: HTMLElement = document.querySelector('.dado');
   const time = 2;
+  const selectcolor = document.querySelector('#selectcolor');
   const btnverpregunta = document.querySelector('#btnverpregunta');
   const btnsalir = document.querySelector('#btnsalir');
   let centena = document.getElementById("centena");
   let decena = document.getElementById("decena") as HTMLInputElement;
   let unidad = document.getElementById("unidad") as HTMLInputElement;
+  let vercolor = document.getElementById("selectcolor");
   let verPregunta = document.getElementById("btnverpregunta");
   let mostrarCentena;
   let mostrarDecena;
   let mostrarUnidad;
   let verResultados;
-  let nroPregunta;  
+  let nroPregunta;
+  let color;  
   
   // Girar el dado y mostrar numero de pregunta en pantalla
 
@@ -126,7 +129,9 @@ function mostrarResultados() {
           if (unidad?.value == mostrarUnidad) {
               unidad.style.visibility = "visible";
               mostrarUnidad = 0;
+              vercolor.style.visibility = "visible";
               verPregunta.style.visibility = "visible";
+              
               
           } else {
               window.alert("Algo salió mal");
@@ -140,10 +145,15 @@ function mostrarResultados() {
 
 //Evento al hacer click en boton Ver Pregunta
 btnverpregunta.addEventListener('click', () => {
- 
+  color = vercolor["value"];
   nroPregunta = centena["value"] + decena?.value + unidad?.value;
-  console.log(nroPregunta);
-  window.alert("Pregunta numero " + nroPregunta);
+  if (color !=0) {
+    console.log(nroPregunta, color);
+    window.alert("Pregunta numero " + nroPregunta + " del libro " + color);
+  } else {
+    window.alert("Debe seleccionar un color");
+  }
+
 
 });
 

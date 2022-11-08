@@ -65,15 +65,28 @@
     <span>
         
         <h2 id="tituloPregunta">Pregunta</h2>
-        <input id="centena" type="text" size="1" maxlength="1" value="">
-        <input id="decena" type="text" size="1" maxlength="1" value="">
-        <input id="unidad" type="text" size="1" maxlength="1" value="">
+        <input id="centena" type="text" size="1" maxlength="1" value="" disabled>
+        <input id="decena" type="text" size="1" maxlength="1" value="" disabled>
+        <input id="unidad" type="text" size="1" maxlength="1" value="" disabled>
     </span>
 </div>
+
 <div class="botones">
-    <button id="btnverpregunta" name="btnverpregunta">Ver Pregunta</button>
+    <div>
+        <select id="selectcolor">
+            <option value="0" disabled selected>Seleccione el color</option>
+            <option value="1">1 - Amarillo</option>
+            <option value="2">2 - Naranja</option>
+            <option value="3">3 - Rosa</option>
+            <option value="4">4 - Marrón</option>
+            <option value="5">5 - Verde</option>
+            <option value="6">6 - Celeste</option>
+          </select>
+    </div>
     <br>
-    <button id="btnsalir" name="btnsalir">Salir</button>
+    <button id="btnverpregunta" name="btnverpregunta">VER PREGUNTA</button>
+    <br>
+    <button id="btnsalir" name="btnsalir">SALIR</button>
 </div>
   
 </ion-content>

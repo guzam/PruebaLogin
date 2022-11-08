@@ -15,7 +15,7 @@
 }
 
 .dado-cara {
-    position: absolute; 
+    position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
@@ -182,10 +182,11 @@
 }
 
 #tituloPregunta {
-    padding-top:2rem;
+    padding-top: 2rem;
 }
 
 #centena {
+    background-color: inherit;
     border: 0px;
     font-size: 40px;
     text-align: center;
@@ -193,6 +194,7 @@
 }
 
 #decena {
+    background-color: inherit;
     border: 0px;
     font-size: 40px;
     text-align: center;
@@ -200,6 +202,7 @@
 }
 
 #unidad {
+    background-color: inherit;
     border: 0px;
     font-size: 40px;
     text-align: center;
@@ -211,12 +214,35 @@
     text-align: center;
 }
 
-#btnverpregunta {
-    width: 30%;
+#selectcolor {
+    height: 35px;
+    width: 45%;
+    border-radius: 5px;
     visibility: hidden;
 }
+#btnverpregunta {
+    font-family: inherit;
+    font-size: 14px;
+    height: 35px;
+    border-radius: 5px;
+    margin-top: 1%;
+    background-color: #3880ff;
+    width: 45%;
+    visibility: hidden;
+}
+#btnverpregunta:hover {
+    background-color: #6399f7;
+  }
 
 #btnsalir {
+    font-family: inherit;
+    font-size: 14px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #3880ff;
     margin-top: 1%;
-    width: 30%;
+    width: 45%;
 }
+#btnsalir:hover {
+    background-color: #6399f7;
+  }
