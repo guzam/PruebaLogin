@@ -1,92 +1,110 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Dado</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Dado</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div class="titulo">
-    <h2>Haga click sobre el dado para hacerlo rodar</h2>
+    <div class="titulo">
+        <h2>Haga click sobre el dado para hacerlo rodar</h2>
 
-</div>
-<div class="container">
-    <div class="dado">
-        <div class="dado-cara frontal">
-            <div class="inside">
-                <span class="punto"></span>
+    </div>
+    <div class="container">
+        <div class="dado">
+            <div class="dado-cara frontal">
+                <div class="inside">
+                    <span class="punto"></span>
+                </div>
+            </div>
+            <div class="dado-cara trasera">
+                <div class="inside">
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                </div>
+            </div>
+            <div class="dado-cara izquierda">
+                <div class="inside">
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                </div>
+            </div>
+            <div class="dado-cara derecha">
+                <div class="inside">
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                </div>
+            </div>
+            <div class="dado-cara superior">
+                <div class="inside">
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                </div>
+            </div>
+            <div class="dado-cara inferior">
+                <div class="inside">
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                </div>
             </div>
         </div>
-        <div class="dado-cara trasera">
-            <div class="inside">
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-            </div>
-        </div>
-        <div class="dado-cara izquierda">
-            <div class="inside">
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-            </div>
-        </div>
-        <div class="dado-cara derecha">
-            <div class="inside">
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-            </div>
-        </div>
-        <div class="dado-cara superior">
-            <div class="inside">
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-                <span class="punto"></span>
-            </div>
-        </div>
-        <div class="dado-cara inferior">
-            <div class="inside">
-                <span class="punto"></span>
-                <span class="punto"></span>
-            </div>
-        </div>
+
     </div>
 
-</div>
+    <div class="resultados">
+        <span>
 
-<div class="resultados">
-    <span>
-        
-        <h2 id="tituloPregunta">Pregunta</h2>
-        <input id="centena" type="text" size="1" maxlength="1" value="" disabled>
-        <input id="decena" type="text" size="1" maxlength="1" value="" disabled>
-        <input id="unidad" type="text" size="1" maxlength="1" value="" disabled>
-    </span>
-</div>
+            <h2 id="tituloPregunta">Pregunta</h2>
+            <input id="centena" type="text" size="1" maxlength="1" value="" disabled>
+            <input id="decena" type="text" size="1" maxlength="1" value="" disabled>
+            <input id="unidad" type="text" size="1" maxlength="1" value="" disabled>
+        </span>
+    </div>
 
-<div class="botones">
+    <div class="botones">
+        <div>
+            <select id="selectcolor">
+                <option value="0" disabled selected>Seleccione el color</option>
+                <option value="1">1 - Amarillo</option>
+                <option value="2">2 - Naranja</option>
+                <option value="3">3 - Rosa</option>
+                <option value="4">4 - Marron</option>
+                <option value="5">5 - Verde</option>
+                <option value="6">6 - Celeste</option>
+            </select>
+        </div>
+        <br>
+        <button id="btnverpregunta" name="btnverpregunta">VER PREGUNTA</button>
+        <br>
+        <button id="btnsalir" name="btnsalir">SALIR</button>
+    </div>
+    <br>
+    <p><textarea id="verpreguntaenhtml" name="" rows="7" cols="30"></textarea></p>
+
+    <select name="opcionesresp" id="respuestas">
+        <option value="0" disabled selected>Seleccione la respuesta</option>
+        <option value="1">Opcion 1</option>
+        <option value="2">Opcion 2</option>
+        <option value="3">Opcion 3</option>
+    </select>
+    <br>
+    <button id="btnselrespuesta" name="btnselrespuesta">SELECCIONAR RESPUESTA</button>
+
     <div>
-        <select id="selectcolor">
-            <option value="0" disabled selected>Seleccione el color</option>
-            <option value="1">1 - Amarillo</option>
-            <option value="2">2 - Naranja</option>
-            <option value="3">3 - Rosa</option>
-            <option value="4">4 - Marrón</option>
-            <option value="5">5 - Verde</option>
-            <option value="6">6 - Celeste</option>
-          </select>
+        <input id="opcion1" type="text" value="" disabled>
+        <br>
+        <input id="opcion2" type="text" value="" disabled>
+        <br>
+        <input id="opcion3" type="text" value="" disabled>
     </div>
-    <br>
-    <button id="btnverpregunta" name="btnverpregunta">VER PREGUNTA</button>
-    <br>
-    <button id="btnsalir" name="btnsalir">SALIR</button>
-</div>
-  
 </ion-content>

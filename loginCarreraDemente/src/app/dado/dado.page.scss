@@ -173,7 +173,10 @@
 }
 
 .titulo {
+    width: 75%;
     text-align: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
 .resultados {
@@ -215,34 +218,103 @@
 }
 
 #selectcolor {
-    height: 35px;
-    width: 45%;
+    height: 25px;
+    width: 65%;
     border-radius: 5px;
     visibility: hidden;
 }
+
+#respuestas {
+    height: 25px;
+    width: 65%;
+    border-radius: 5px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+
+}
+
 #btnverpregunta {
     font-family: inherit;
     font-size: 14px;
-    height: 35px;
+    height: 25px;
     border-radius: 5px;
     margin-top: 1%;
     background-color: #3880ff;
-    width: 45%;
+    width: 65%;
     visibility: hidden;
 }
-#btnverpregunta:hover {
+
+#btnselrespuesta {
+    font-family: inherit;
+    font-size: 14px;
+    height: 25px;
+    border-radius: 5px;
+    margin-top: 1.5%;
+    background-color: #3880ff;
+    width: 65%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+
+}
+
+#btnverpregunta,
+#btnselrespuesta:hover {
     background-color: #6399f7;
-  }
+}
 
 #btnsalir {
     font-family: inherit;
     font-size: 14px;
-    height: 35px;
+    height: 25px;
     border-radius: 5px;
     background-color: #3880ff;
     margin-top: 1%;
-    width: 45%;
+    width: 65%;
 }
+
 #btnsalir:hover {
     background-color: #6399f7;
-  }
+}
+
+#verpreguntaenhtml {
+    width: 65%;
+    background-color: inherit;
+    border: 0px;
+    font-size: 14px;
+    text-align: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+}
+
+#opcion1 {
+    /* width: 100%;
+    background-color: inherit;
+    border: 0px;
+    font-size: 14px;
+    text-align: center; */
+    visibility: hidden;
+
+}
+
+#opcion2 {
+    /* width: 100%;
+    background-color: inherit;
+    border: 0px;
+    font-size: 14px;
+    text-align: center; */
+    visibility: hidden;
+
+}
+
+#opcion3 {
+    /* width: 100%;
+    background-color: inherit;
+    border: 0px;
+    font-size: 14px;
+    text-align: center; */
+    visibility: hidden;
+
+}
