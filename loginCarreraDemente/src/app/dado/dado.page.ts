@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-dado',
@@ -9,10 +10,10 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 })
 export class DadoPage implements OnInit {
 
-  constructor(private location: Location) { }
+  constructor(private location: Location, private router:Router) { }
 
   salir() {
-    this.location.back();
+    this.router.navigateByUrl('/home');
   }
 
   ngOnInit() {
@@ -154,6 +155,7 @@ export class DadoPage implements OnInit {
     //Evento al hacer click en boton "Salir"
     btnsalir.addEventListener('click', () => {
 
+      //console.log("Voy saliendo");
       this.salir();
 
     });
@@ -182,9 +184,9 @@ export class DadoPage implements OnInit {
 
     //Muestra pregunta en pantalla, los valores los debe tomar de la DB
     function leerpregunta() {
-      verpreguntaenhtml["value"] = "La vaca es un animal todo forrado de cuero que tiene las patas tan largas que le llegan hasta el suelo. Cuando se muera mi suegra que la entierren boca abajo, por si se quiere salir, que se vaya para abajo. En el lago Titicaca hay una vieja costumbre, para calentar la leche se prende fuego a la vaca";
-      opcion1["value"] = "Valor de la op. 1 de la DB";
-      opcion2["value"] = "Valoe de la op. 2 de la DB";
+      verpreguntaenhtml["value"] = "La vaca es un animal todo forrado de cuero que tiene las patas tan largas que le llegan hasta el suelo. Cuando se muera mi suegra que la entierren boca abajo, por si se quiere salir, que se vaya para abajo. En el lago Titicaca hay una vieja costumbre, para calentar la leche se prende fuego a la vaca"; // Levantar pregunta de la DB
+      opcion1["value"] = "Valor de la op. 1 de la DB"; //Levantar respuestas de la DB
+      opcion2["value"] = "Valor de la op. 2 de la DB";
       opcion3["value"] = "Valor de la op. 3 de la DB";
       verpreguntaenhtml.style.visibility = "visible";
       /* opcion1.style.visibility = "visible";

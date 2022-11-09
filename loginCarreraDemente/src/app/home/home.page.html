@@ -15,47 +15,52 @@
 
   <div id="container">
     <ion-item>
-      <ion-label position="floating" >Usuario</ion-label>
+      <ion-label position="floating">Usuario</ion-label>
       <ion-input type="username"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating" >Password</ion-label>
+      <ion-label position="floating">Password</ion-label>
       <ion-input type="password"></ion-input>
     </ion-item>
-    
-      <button class="loginbutton" (click)="gotodado()"> INGRESAR </button>
-      <button class="loginbutton"> REGISTRARSE </button>
-      
+
+    <button class="loginbutton" (click)="gotojugadores()"> INGRESAR </button>
+    <button class="loginbutton"> REGISTRARSE </button>
+
   </div>
-<button id="contrasena" expand="block">¿Olvidó su contraseña?</button>
-<!-- <p>{{ message }}</p> -->
-<ion-modal trigger="contrasena" (willDismiss)="onWillDismiss($event)">
-  <ng-template>
-    <ion-content class="ion-padding">
-      <ion-item>
-        <br>  
-        <select class="tohide" name="selector" id="selector">
-          <option value="0" disabled selected>Seleccione la pregunta de seguridad</option>
-          <option value="1">¿A que secundaria fuiste?</option>
-          <option value="2">¿Nombre de tu mamá?</option>
-          <option value="3">¿Cuándo es tu cumpleaños?</option>
-          <option value="4">¿Nombre de la primer mascota?</option>
-        </select>
-        <br>
-        <ion-label class="tohide" position="floating" >Escriba su respuesta</ion-label>
-        <ion-input class="tohide" type="password" [(ngModel)]="respuesta"></ion-input>
-        <br>
-        <ion-button class="tohide" id="label" (click)="verificar()">Verificar respuesta</ion-button>
-        <ion-button class="tohide" id="label" (click)="cancelar()">Cancelar</ion-button>
-        <br>
-        <ion-label class="toshow" position="floating" >Escriba su nueva contraseña</ion-label>
-        <ion-input class="toshow" type="password"></ion-input>
-        <br>
-        <ion-button class="toshow" (click)="confirmar()">Restablecer contraseña</ion-button>
-        <ion-button class="toshow" (click)="cancelar()">Cancelar</ion-button>
-        
-      </ion-item>
-    </ion-content>
-  </ng-template>
-</ion-modal>
+  <button id="contrasena" expand="block">¿Olvidó su contraseña?</button>
+  <!-- <p>{{ message }}</p> -->
+
+  
+
+  <ion-modal trigger="contrasena" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <br>
+          <select class="tohide" name="selector" id="selector">
+            <option value="0" disabled selected>Seleccione la pregunta de seguridad</option>
+            <option value="1">¿A que secundaria fuiste?</option>
+            <option value="2">¿Nombre de tu mamá?</option>
+            <option value="3">¿Cuándo es tu cumpleaños?</option>
+            <option value="4">¿Nombre de la primer mascota?</option>
+          </select>
+          <br>
+          <ion-label class="tohide" position="floating">Escriba su respuesta</ion-label>
+          <ion-input class="tohide" type="password" [(ngModel)]="respuesta"></ion-input>
+          <br>
+          <ion-button class="tohide" id="label" (click)="verificar()">Verificar respuesta</ion-button>
+          <ion-button class="tohide" id="label" (click)="cancelar()">Cancelar</ion-button>
+          <br>
+          <ion-label class="toshow" position="floating">Escriba su nueva contraseña</ion-label>
+          <ion-input class="toshow" type="password"></ion-input>
+          <br>
+          <ion-button class="toshow" (click)="confirmar()">Restablecer contraseña</ion-button>
+          <ion-button class="toshow" (click)="cancelar()">Cancelar</ion-button>
+
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+ 
 </ion-content>

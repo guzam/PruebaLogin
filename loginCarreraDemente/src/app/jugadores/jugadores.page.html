@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>jugadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="jugadores">
+    
+    <label for="jugador1" id="label1">Jugador 1</label>
+    <input type="text" name="jugador1" id="jugador1" maxlength="10">
+    <button class="loginbutton" id="btnfoto">Foto</button>
+    <br>
+    <label for="jugador2" id="label2">Jugador 2</label>
+    <input type="text" name="jugador2" id="jugador2" maxlength="10">
+    <button class="loginbutton" id="btnfoto">Foto</button>
+    <br>
+    <label for="jugador3" id="label3">Jugador 3</label>
+    <input type="text" name="jugador3" id="jugador3" maxlength="10">
+    <button class="loginbutton" id="btnfoto">Foto</button>
+    <br>
+    <label for="jugador4" id="label4">Jugador 4</label>
+    <input type="text" name="jugador4" id="jugador4" maxlength="10">
+    <button class="loginbutton" id="btnfoto">Foto</button>
+    <br>
+    
+    <div>
+    <button class="loginbutton" id="btncomenzar" (click)="gotodado()"> COMENZAR </button>
+    <button class="loginbutton" id="btnsalir" name="btnsalir">SALIR</button>
+  </div>
+
+</div>
+</ion-content>

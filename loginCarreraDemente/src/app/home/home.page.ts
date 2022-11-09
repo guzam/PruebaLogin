@@ -17,9 +17,15 @@ export class HomePage {
 
   message = '';
   respuesta: string;
+  
+  ingresar() {
+    //aca iria el if para validar el usuario y contrasena, dentro del if llamar a gotojugadores()
+    this.gotojugadores()
+  }
+  
+  gotojugadores() { //Muestra los input para cargar los jugadores
+    this.router.navigateByUrl('/jugadores');
 
-  gotodado() {
-    this.router.navigateByUrl('/dado');
   }
 
   cancelar() {
