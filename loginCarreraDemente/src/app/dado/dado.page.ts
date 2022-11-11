@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {Router} from '@angular/router';
-
+import { setPlatformHelpers } from 'ionicons/dist/types/stencil-public-runtime';
+import  { presentAlert }  from '../../../src/assets/ts/helper';
+import  { preguntaResponse, objRespuestasList, objPregunta }  from '../../../src/assets/ts/interfaces';
 
 @Component({
   selector: 'app-dado',
   templateUrl: './dado.page.html',
   styleUrls: ['./dado.page.scss'],
 })
+
+
 export class DadoPage implements OnInit {
+
 
   constructor(private location: Location, private router:Router) { }
 
@@ -43,6 +48,7 @@ export class DadoPage implements OnInit {
     let nroPregunta;
     let color;
     let respuesta;
+    let foods;
 
     // Girar el dado y mostrar numero de pregunta en pantalla
 
@@ -139,7 +145,8 @@ export class DadoPage implements OnInit {
           if (unidad?.value == mostrarUnidad) {
             unidad.style.visibility = "visible";
             mostrarUnidad = 0;
-            vercolor.style.visibility = "visible";
+            //vercolor.style.visibility = "visible";
+
             verPregunta.style.visibility = "visible";
 
 
@@ -163,71 +170,78 @@ export class DadoPage implements OnInit {
     //Evento al hacer click en boton "Ver Pregunta"
     btnverpregunta.addEventListener('click', () => {
       valoresPregunta();
-      if (color != 0) {
-        console.log(nroPregunta, color); //valores para hacer la consulta en DB
-        leerpregunta();
-      } else {
-        window.alert("Debe seleccionar un color");
-      }
-
-
-
-
-
+      //if (color != 0) {
+        console.log(nroPregunta);//, color); //valores para hacer la consulta en DB
+        
+      //} else {
+        //window.alert("Debe seleccionar un color");
+      //}
     });
+
     //Numero de pregunta y color de libro
     function valoresPregunta() {
-      color = vercolor["value"];
+      //color = vercolor["value"];
       nroPregunta = centena["value"] + decena?.value + unidad?.value;
+      //var nro: objPregunta{nroPregunta = } = nroPregunta as number;
 
+      var nro: objPregunta = {nroPregunta:nroPregunta}
+
+      pregunta(nro);
+    }
+
+    async function pregunta(preg: objPregunta) {
+      var result = await getPregunta(preg);
+
+      setearPregunta(result.pregunta);
+      setearRespuestas(result.respuesta);
+    }
+
+    //Muestra pregunta en pantalla, los valores los debe tomar de la DB
+    function setearPregunta(pregunta: string){
+      verpreguntaenhtml["value"] = pregunta;
+      verpreguntaenhtml.style.visibility = "visible";
+    }
+
+    function setearRespuestas(respuesta: objRespuestasList[]){
+      verrespuesta.style.visibility = "visible";
+      respuestas[1].text = respuesta[0].posibleRespuesta;
+      respuestas[1].value = respuesta[0].esLaCorrecta;
+      respuestas[2].text = respuesta[1].posibleRespuesta;
+      respuestas[2].value = respuesta[1].esLaCorrecta;
+      respuestas[3].text = respuesta[2].posibleRespuesta;
+      respuestas[3].value = respuesta[2].esLaCorrecta;
+      selrespuesta.style.visibility = "visible";
     }
 
     //Muestra pregunta en pantalla, los valores los debe tomar de la DB
     function leerpregunta() {
-      verpreguntaenhtml["value"] = "La vaca es un animal todo forrado de cuero que tiene las patas tan largas que le llegan hasta el suelo. Cuando se muera mi suegra que la entierren boca abajo, por si se quiere salir, que se vaya para abajo. En el lago Titicaca hay una vieja costumbre, para calentar la leche se prende fuego a la vaca"; // Levantar pregunta de la DB
-      opcion1["value"] = "Valor de la op. 1 de la DB"; //Levantar respuestas de la DB
-      opcion2["value"] = "Valor de la op. 2 de la DB";
-      opcion3["value"] = "Valor de la op. 3 de la DB";
-      verpreguntaenhtml.style.visibility = "visible";
+      //verpreguntaenhtml["value"] = "La vaca es un animal todo forrado de cuero que tiene las patas tan largas que le llegan hasta el suelo. Cuando se muera mi suegra que la entierren boca abajo, por si se quiere salir, que se vaya para abajo. En el lago Titicaca hay una vieja costumbre, para calentar la leche se prende fuego a la vaca"; // Levantar pregunta de la DB
+      // opcion1["value"] = "Valor de la op. 1 de la DB"; //Levantar respuestas de la DB
+      // opcion2["value"] = "Valor de la op. 2 de la DB";
+      // opcion3["value"] = "Valor de la op. 3 de la DB";
+      //verpreguntaenhtml.style.visibility = "visible";
       /* opcion1.style.visibility = "visible";
       opcion2.style.visibility = "visible";
       opcion3.style.visibility = "visible"; */
-      verrespuesta.style.visibility = "visible";
-      respuestas[1].text = opcion1["value"];
-      respuestas[2].text = opcion2["value"];
-      respuestas[3].text = opcion3["value"];
-      selrespuesta.style.visibility = "visible";
-
-
+      // verrespuesta.style.visibility = "visible";
+      // respuestas[1].text = opcion1["value"];
+      // respuestas[2].text = opcion2["value"];
+      // respuestas[3].text = opcion3["value"];
+      // selrespuesta.style.visibility = "visible";
     }
 
 
     //Evento al hacer click en el boton "Seleccionar Respuesta"
     btnselrespuesta.addEventListener('click', () => {
+      let respuesta = verrespuesta["value"]
 
-      respuestaseleccionada()
-      console.log("La respuesta seleccionada es: ", respuesta)
-
-      if (respuesta == 0) {
-        window.alert("Debe seleccionar una respuesta!");
+      if(respuesta == "true"){
+        presentAlert("Respuesta Correcta!","","Avance 3 casilleros y haga rodar el dado");
+        //location.reload();
+      }else{
+        presentAlert("Respuesta Incorrecta!","Mala Suerte","que pase el que sigue");
+        //location.reload();
       }
-      else {
-        if (respuesta == 2) {  // igualar con la respuesta correcta de la DB
-
-          window.alert("Correcto!!!! Avance 3 casilleros y haga rodar el dado");
-          location.reload();
-        }
-        else {
-          window.alert("Mala suerte, que pase el que sigue");
-          location.reload();
-        }
-      }
-
-      function respuestaseleccionada() {
-        respuesta = verrespuesta["value"];
-      }
-
-
     });
 
 
@@ -236,6 +250,43 @@ export class DadoPage implements OnInit {
 }
 
 //*************************** */
+
+async function getPregunta(pregunta: objPregunta){
+
+  var result : preguntaResponse
+
+  try {
+    // const response: Response
+    const response = await fetch('https://localhost:44362/api/PreguntasCDM', {
+      method: 'POST',
+      //mode: 'cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        nroPregunta:pregunta.nroPregunta
+      }),
+    });
+
+    if (!response.ok) {throw new Error(`Error! status: ${response.status}`);}
+
+    // const result: CreateUserResponse
+    const result = (await response.json()) as preguntaResponse;
+    const json = JSON.stringify(result, null, 4);
+    console.log('result is: ', json);
+    return result;
+
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log('error message: ', error.message);
+      result.pregunta = error.message;
+    } else {
+      console.log('unexpected error: ', error);
+      result.pregunta = 'An unexpected error occurred';
+    }
+    //result.result = -1;
+    return result;
+  }
+
+}
 
 
 
