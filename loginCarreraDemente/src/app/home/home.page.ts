@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonModal, NavController } from '@ionic/angular';
 import {Router} from '@angular/router';
-//import { resourceLimits } from 'worker_threads';
-import  { presentAlert }  from '../../../src/assets/ts/helper'
-
+import  { presentAlert, validarIngreso }  from '../../../src/assets/ts/helper'
+import  { LoginResponse, objUsuario }  from '../../../src/assets/ts/interfaces';
 
 
 @Component({
@@ -14,7 +13,7 @@ import  { presentAlert }  from '../../../src/assets/ts/helper'
 export class HomePage {
 
   //constructor(private router:Router) {}
-  constructor(public navCtrl:NavController) {}
+  constructor(public navCtrl:NavController, private router: Router) {}
   @ViewChild(IonModal) modal: IonModal;
 
 
@@ -22,38 +21,27 @@ export class HomePage {
   respuesta: string;
   
   ingresar() {
-    //aca iria el if para validar el usuario y contrasena, dentro del if llamar a gotojugadores()
     //var ruta = this.router.navigateByUrl('/jugadores');
     var usu = (document.getElementById('usu') as HTMLInputElement).value
     var pass = (document.getElementById('pass') as HTMLInputElement).value
-    console.log(usu);
+    //console.log(usu);
     //console.log(pass);
     var user: objUsuario = {usuario:usu, password:pass}
 
-    name(user)
-    async function name(user: objUsuario) {
-      let result = await login(user);
-
-       //validación ingreso login
-    if(result.result == 1 && result.token == "tokenPOOmBA01"){
-      //ingreso permitido
-      //Muestra los input para cargar los jugadores
-      window.location.href = "/jugadores";
-      //this.navCtrl.push("jugadores");
-    }else{
-      presentAlert("Error!", "" , "Usuario o password incorrecto, por favor intente nuevamente.")
-      //window.alert("Usuario o password incorrecto, por favor intente nuevamente.");
-    }
-    }
-    //var result = name;//login(user);
-    
-    //imprimir();
-
+    //TEST
+    //this.router.navigate(['jugadores']);
+    //PROD 
+    validarIngreso(user)
   }
-  
-  gotojugadores() { //Muestra los input para cargar los jugadores
-    //this.router.navigateByUrl('/jugadores');
+
+  ingresarSinLogin(){
+    this.router.navigate(['jugadores']);
   }
+
+  // gotojugadores() { //Muestra los input para cargar los jugadores
+  //   //this.router.navigateByUrl('/jugadores');
+  //   this.router.navigate(['jugadores']);
+  // }
 
   cancelar() {
     this.modal.dismiss(null, 'cancel');
@@ -86,62 +74,3 @@ export class HomePage {
   }
 
 }
-
-type LoginResponse = {
-  result: number;
-  message: string;
-  token: string;
-};
-
-type objUsuario = {
-  usuario: string;
-  password: string;
-}
-
-async function login(usuario: objUsuario){
-
-  var result : LoginResponse
-
-  try {
-    // const response: Response
-    const response = await fetch('https://localhost:44362/api/Access/Login', {
-      method: 'POST',
-      //mode: 'cors',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        usuario:usuario.usuario,
-        password:usuario.password
-      }),
-    });
-
-    if (!response.ok) {throw new Error(`Error! status: ${response.status}`);}
-
-    // const result: CreateUserResponse
-    const result = (await response.json()) as LoginResponse;
-    const json = JSON.stringify(result, null, 4);
-    console.log('result is: ', json);
-    return result;
-
-  } catch (error) {
-    if (error instanceof Error) {
-      console.log('error message: ', error.message);
-      result.message = error.message;
-    } else {
-      console.log('unexpected error: ', error);
-      result.message = 'An unexpected error occurred';
-    }
-    result.result = -1;
-    return result;
-  }
-
-}
-
-// let user: objUsuario = {usuario:"fbalbuena", password:"1234"}
-//   //user.usu = "gzammataro";
-//   //user.pass = "1234";
-  
-//   async function imprimir() {
-//       let result = await login(user);
-//   }
-  
-//   //imprimir();

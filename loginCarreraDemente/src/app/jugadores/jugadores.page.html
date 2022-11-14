@@ -1,28 +1,45 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>jugadores</ion-title>
+    <ion-title>Perfil Jugador</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="jugadores">
     
-    <label for="jugador1" id="label1">Jugador 1</label>
+    <!-- <img [src]="picture" />
+    <label for="jugador1" id="j1">Jugador 1</label>
     <input type="text" name="jugador1" id="jugador1" maxlength="10">
-    <button class="loginbutton" id="btnfoto">Foto</button>
-    <br>
-    <label for="jugador2" id="label2">Jugador 2</label>
+    <button class="loginbutton" id="btnfoto"(click)="takePicture()">Foto</button> -->
+
+    <!-- <ion-item>
+      <ion-avatar slot="start" (click)="takePicture()">
+        <img alt="picture" [src]="picture" />
+      </ion-avatar>
+      <ion-label>Nombre Jugador</ion-label>
+    </ion-item> -->
+
+      
+    <ion-item>
+      <ion-thumbnail slot="start" (click)="takePicture()">
+        <img id="imgAvatarIcon" src="../../assets/icon/avatar.svg" />
+        <img [src]="picture" />
+      </ion-thumbnail>
+      <ion-input placeholder="Nombre Jugador" id="nombreJugador"></ion-input>
+    </ion-item>
+    <!-- <br>
+    <label for="jugador2" id="j2">Jugador 2</label>
     <input type="text" name="jugador2" id="jugador2" maxlength="10">
     <button class="loginbutton" id="btnfoto">Foto</button>
     <br>
-    <label for="jugador3" id="label3">Jugador 3</label>
+    <label for="jugador3" id="j3">Jugador 3</label>
     <input type="text" name="jugador3" id="jugador3" maxlength="10">
     <button class="loginbutton" id="btnfoto">Foto</button>
     <br>
-    <label for="jugador4" id="label4">Jugador 4</label>
+    <label for="jugador4" id="j4">Jugador 4</label>
     <input type="text" name="jugador4" id="jugador4" maxlength="10">
     <button class="loginbutton" id="btnfoto">Foto</button>
-    <br>
+    <br> -->
     
     <div>
     <button class="loginbutton" id="btncomenzar" (click)="gotodado()"> COMENZAR </button>

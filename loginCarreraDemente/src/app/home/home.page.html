@@ -23,16 +23,17 @@
       <ion-input type="password" id="pass"></ion-input>
     </ion-item>
 
-    <button class="loginbutton" (click)="ingresar()"> INGRESAR </button>
-    <button class="loginbutton"> REGISTRARSE </button>
+    <ion-button class="loginbutton" (click)="ingresar()"> INGRESAR </ion-button>
+    <ion-button class="loginbutton"> REGISTRARSE </ion-button>
+    <ion-button class="loginbutton" routerLink="/jugadores"> INGRESAR SIN USUARIO</ion-button>
 
   </div>
-  <button id="contrasena" expand="block">¿Olvidó su contraseña?</button>
+  <!-- <button id="contrasena" expand="block">¿Olvidó su contraseña?</button> -->
   <!-- <p>{{ message }}</p> -->
 
   
 
-  <ion-modal trigger="contrasena" (willDismiss)="onWillDismiss($event)">
+  <!-- <ion-modal trigger="contrasena" (willDismiss)="onWillDismiss($event)">
     <ng-template>
       <ion-content class="ion-padding">
         <ion-item>
@@ -60,7 +61,7 @@
         </ion-item>
       </ion-content>
     </ng-template>
-  </ion-modal>
+  </ion-modal> -->
 
  
 </ion-content>

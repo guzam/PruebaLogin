@@ -2,8 +2,43 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {Router} from '@angular/router';
 import { setPlatformHelpers } from 'ionicons/dist/types/stencil-public-runtime';
-import  { presentAlert }  from '../../../src/assets/ts/helper';
+import  { presentAlert } from '../../../src/assets/ts/helper';
 import  { preguntaResponse, objRespuestasList, objPregunta }  from '../../../src/assets/ts/interfaces';
+
+import  { motionActive }  from '../../../src/assets/ts/motion';
+
+
+import { PluginListenerHandle } from '@capacitor/core';
+import { Motion } from '@capacitor/motion';
+
+
+let accelHandler: PluginListenerHandle;
+
+// myButton.addEventListener('click', async () => {
+//   try {
+//     await (DeviceMotionEvent as any).requestPermission() 
+//   } catch (e) {
+//     // Handle error
+//     return;
+//   }
+//motionActive();
+//   // Once the user approves, can start listening:
+//   accelHandler = await Motion.addListener('accel', event => {
+//     console.log('Device motion event:', event);
+//   });
+// });
+
+// Stop the acceleration listener
+const stopAcceleration = () => {
+  if (accelHandler) {
+    accelHandler.remove();
+  }
+};
+
+// Remove all listeners
+const removeListeners = () => {
+  Motion.removeAllListeners();
+};
 
 @Component({
   selector: 'app-dado',
@@ -14,7 +49,6 @@ import  { preguntaResponse, objRespuestasList, objPregunta }  from '../../../src
 
 export class DadoPage implements OnInit {
 
-
   constructor(private location: Location, private router:Router) { }
 
   salir() {
@@ -22,6 +56,14 @@ export class DadoPage implements OnInit {
   }
 
   ngOnInit() {
+
+    //var ronda: number = localStorage.getItem('ronda');
+    var encabezado = (document.getElementById('id_Dado') as HTMLInputElement).value;
+    
+    // switch(ronda){
+    //   "1" = localStorage.getItem('jugador1');
+    // }
+    //var verpreguntaenhtml["value"] = pregunta;
 
     const dado: HTMLElement = document.querySelector('.dado');
     const time = 2;
@@ -237,14 +279,19 @@ export class DadoPage implements OnInit {
 
       if(respuesta == "true"){
         presentAlert("Respuesta Correcta!","","Avance 3 casilleros y haga rodar el dado");
+        //var suma = localStorage.setItem("jugador1",)
+        var pts = localStorage.getItem("jugador1");
+        var suma = parseInt(pts) + 3
+        localStorage.setItem("jugador1",suma.toString())
+        
+       // localStorage.setItem('jugador1', j1 + "_0pts");
+       /// localStorage.getItem("jugador1").
         //location.reload();
       }else{
         presentAlert("Respuesta Incorrecta!","Mala Suerte","que pase el que sigue");
-        //location.reload();
+        location.reload();
       }
     });
-
-
 
   }
 }
