@@ -20,15 +20,18 @@ export class JugadoresPage implements OnInit {
 
   var item = document.getElementById('imgAvatarIcon') as HTMLInputElement
   item.style.display = "none"
+  var img = document.getElementById('img') as HTMLElement;
 
   const image = await Camera.getPhoto({
     quality: 90,
     allowEditing: false,
-    resultType: CameraResultType.DataUrl
+    resultType: CameraResultType.DataUrl,
+    saveToGallery: true
 
   });
 
   this.picture = image.dataUrl;
+  img.style.visibility = "visible";
  }
 
 
