@@ -6,7 +6,8 @@
   right: 15%;
   top: 50%;
   transform: translateY(-50%);
-} 
+}
+
 #contrasena {
   background-color: inherit;
   text-align: center;
@@ -33,16 +34,6 @@
 #container a {
   text-decoration: none;
 }
-/* #contrasena {
-  text-align: center;
-  font-family: inherit;
-  font-size: 14px;
-  position: absolute;
-  left: 35%;
-  right: 35%;
-  top: 70%;
-  background-color: inherit;
-} */
 
 .loginbutton {
   font-family: inherit;
@@ -67,59 +58,3 @@
 .tohide {
   display: block;
 }
-
-
-
-/* @media screen and (max-width: 760px) {
-  #container {
-    text-align: center;
-  
-    position: absolute;
-    left: 15%;
-    right: 15%;
-    top: 40%;
-    transform: translateY(-50%);
-  } 
-  #contrasena {
-    text-align: center;
-    position: absolute;
-    left: 20%;
-    right: 20%;
-    top: 55%;
-  }
-
-  .jugadores {
-    text-align: center;
-  
-    position: absolute;
-    top: 60%;
-    transform: translateY(-50%);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-  
-  }
-  
-  #jugador1, #jugador2, #jugador3, #jugador4 {
-    width: 55%;
-    margin-left: 1rem;
-  }
-  
-  #btncomenzar {
-    width: 80%;
-  }
-  
-} */
-
-/* @media screen and (min-width: 761px) and (max-width: 990px){
-  #container {
-    text-align: center;
-    position: absolute;
-    left: 30%;
-    right: 30%;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  
-} */

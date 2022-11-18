@@ -12,6 +12,7 @@
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
+    visibility: hidden;
 }
 
 .dado-cara {
@@ -186,6 +187,7 @@
 
 #tituloPregunta {
     padding-top: 2rem;
+    visibility: hidden;
 }
 
 #centena {
@@ -289,32 +291,23 @@
     visibility: hidden;
 }
 
-#opcion1 {
-    /* width: 100%;
-    background-color: inherit;
-    border: 0px;
-    font-size: 14px;
-    text-align: center; */
-    visibility: hidden;
-
-}
-
-#opcion2 {
-    /* width: 100%;
-    background-color: inherit;
-    border: 0px;
-    font-size: 14px;
-    text-align: center; */
-    visibility: hidden;
-
-}
-
+#opcion1,
+#opcion2,
 #opcion3 {
-    /* width: 100%;
-    background-color: inherit;
-    border: 0px;
-    font-size: 14px;
-    text-align: center; */
+
     visibility: hidden;
 
+}
+
+
+#img {
+    visibility: hidden;
+}
+
+#thumbnail {
+    background-color: inherit;
+    height: 100px;
+    width: 100px;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }

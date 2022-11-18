@@ -1,44 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {Router} from '@angular/router';
-import { setPlatformHelpers } from 'ionicons/dist/types/stencil-public-runtime';
 import  { presentAlert } from '../../../src/assets/ts/helper';
 import  { preguntaResponse, objRespuestasList, objPregunta }  from '../../../src/assets/ts/interfaces';
-
-import  { motionActive }  from '../../../src/assets/ts/motion';
-
-
-import { PluginListenerHandle } from '@capacitor/core';
-import { Motion } from '@capacitor/motion';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 
-let accelHandler: PluginListenerHandle;
-
-// myButton.addEventListener('click', async () => {
-//   try {
-//     await (DeviceMotionEvent as any).requestPermission() 
-//   } catch (e) {
-//     // Handle error
-//     return;
-//   }
-//motionActive();
-//   // Once the user approves, can start listening:
-//   accelHandler = await Motion.addListener('accel', event => {
-//     console.log('Device motion event:', event);
-//   });
-// });
-
-// Stop the acceleration listener
-const stopAcceleration = () => {
-  if (accelHandler) {
-    accelHandler.remove();
-  }
-};
-
-// Remove all listeners
-const removeListeners = () => {
-  Motion.removeAllListeners();
-};
 
 @Component({
   selector: 'app-dado',
@@ -51,19 +18,45 @@ export class DadoPage implements OnInit {
 
   constructor(private location: Location, private router:Router) { }
 
+  picture: string;
+
+
+  async takePicture (){
+ 
+   var item = document.getElementById('imgAvatarIcon') as HTMLInputElement
+   item.style.display = "none"
+   var img = document.getElementById('img') as HTMLElement;
+ 
+   const image = await Camera.getPhoto({
+     quality: 90,
+     allowEditing: false,
+     resultType: CameraResultType.DataUrl,
+     saveToGallery: true
+ 
+   });
+ 
+   this.picture = image.dataUrl;
+   img.style.visibility = "visible";
+
+   const verdado = document.getElementsByClassName('dado')
+    for (let i = 0; i<verdado.length; i++)
+    {
+      const dadohtml = verdado[i] as HTMLElement;
+      dadohtml.style.visibility = 'visible';
+    }
+    var verpregunta = document.getElementById('btnverpregunta') as HTMLInputElement;
+    verpregunta.style.visibility = "visible";
+    var titulopagina = document.getElementById('titulopagina') as HTMLInputElement;
+    titulopagina.textContent = "Haga click sobre el dado para hacerlo rodar";
+
+  }
+  
+  
   salir() {
     this.router.navigateByUrl('/home');
   }
 
   ngOnInit() {
-
-    //var ronda: number = localStorage.getItem('ronda');
-    var encabezado = (document.getElementById('id_Dado') as HTMLInputElement).value;
-    
-    // switch(ronda){
-    //   "1" = localStorage.getItem('jugador1');
-    // }
-    //var verpreguntaenhtml["value"] = pregunta;
 
     const dado: HTMLElement = document.querySelector('.dado');
     const time = 2;
@@ -94,6 +87,20 @@ export class DadoPage implements OnInit {
 
     // Girar el dado y mostrar numero de pregunta en pantalla
 
+    function ocultar() {
+      centena.style.visibility = "hidden";
+      centena["value"]="";
+      decena.value="";
+      decena.style.visibility = "hidden"
+      unidad.value="";
+      unidad.style.visibility = "hidden"
+      verPregunta.style.visibility = "hidden";
+      selrespuesta.style.visibility = "hidden";
+      verrespuesta.style.visibility = "hidden";
+      verpreguntaenhtml.style.visibility = "hidden";
+
+    }
+    
     dado.addEventListener('click', () => {
       dado.style.transition = '';
       dado.style.transform = `translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
@@ -122,7 +129,7 @@ export class DadoPage implements OnInit {
                 mostrarUnidad = randomValue;
               }
               else {
-                location.reload();
+                ocultar();
               }
             }
           }
@@ -164,8 +171,7 @@ export class DadoPage implements OnInit {
 
     });
 
-    //Retrasar la aparicion del numero de pregunta en pantalla
-    //y habilitar el boton "Ver Pregunta"
+    //Retrasar la aparicion del numero de pregunta en pantalla y habilitar el boton "Ver Pregunta"
     function restraso() {
       verResultados = setTimeout(mostrarResultados, 2000)
     };
@@ -193,9 +199,10 @@ export class DadoPage implements OnInit {
 
 
           } else {
-            window.alert("Algo salió mal");
+            presentAlert("Atención!","","Debe presionar tres veces el dado para seleccionar la pregunta");
+        
           }
-
+ 
         }
 
       }
@@ -204,7 +211,7 @@ export class DadoPage implements OnInit {
     //Evento al hacer click en boton "Salir"
     btnsalir.addEventListener('click', () => {
 
-      //console.log("Voy saliendo");
+      
       this.salir();
 
     });
@@ -212,19 +219,17 @@ export class DadoPage implements OnInit {
     //Evento al hacer click en boton "Ver Pregunta"
     btnverpregunta.addEventListener('click', () => {
       valoresPregunta();
-      //if (color != 0) {
-        console.log(nroPregunta);//, color); //valores para hacer la consulta en DB
+      
+        console.log(nroPregunta);
         
-      //} else {
-        //window.alert("Debe seleccionar un color");
-      //}
+      
     });
 
     //Numero de pregunta y color de libro
     function valoresPregunta() {
-      //color = vercolor["value"];
+      
       nroPregunta = centena["value"] + decena?.value + unidad?.value;
-      //var nro: objPregunta{nroPregunta = } = nroPregunta as number;
+      
 
       var nro: objPregunta = {nroPregunta:nroPregunta}
 
@@ -255,41 +260,23 @@ export class DadoPage implements OnInit {
       selrespuesta.style.visibility = "visible";
     }
 
-    //Muestra pregunta en pantalla, los valores los debe tomar de la DB
-    function leerpregunta() {
-      //verpreguntaenhtml["value"] = "La vaca es un animal todo forrado de cuero que tiene las patas tan largas que le llegan hasta el suelo. Cuando se muera mi suegra que la entierren boca abajo, por si se quiere salir, que se vaya para abajo. En el lago Titicaca hay una vieja costumbre, para calentar la leche se prende fuego a la vaca"; // Levantar pregunta de la DB
-      // opcion1["value"] = "Valor de la op. 1 de la DB"; //Levantar respuestas de la DB
-      // opcion2["value"] = "Valor de la op. 2 de la DB";
-      // opcion3["value"] = "Valor de la op. 3 de la DB";
-      //verpreguntaenhtml.style.visibility = "visible";
-      /* opcion1.style.visibility = "visible";
-      opcion2.style.visibility = "visible";
-      opcion3.style.visibility = "visible"; */
-      // verrespuesta.style.visibility = "visible";
-      // respuestas[1].text = opcion1["value"];
-      // respuestas[2].text = opcion2["value"];
-      // respuestas[3].text = opcion3["value"];
-      // selrespuesta.style.visibility = "visible";
-    }
-
-
+    
     //Evento al hacer click en el boton "Seleccionar Respuesta"
     btnselrespuesta.addEventListener('click', () => {
       let respuesta = verrespuesta["value"]
 
       if(respuesta == "true"){
         presentAlert("Respuesta Correcta!","","Avance 3 casilleros y haga rodar el dado");
-        //var suma = localStorage.setItem("jugador1",)
+      
         var pts = localStorage.getItem("jugador1");
         var suma = parseInt(pts) + 3
         localStorage.setItem("jugador1",suma.toString())
-        
-       // localStorage.setItem('jugador1', j1 + "_0pts");
-       /// localStorage.getItem("jugador1").
-        //location.reload();
+        ocultar()
+                
+       
       }else{
         presentAlert("Respuesta Incorrecta!","Mala Suerte","que pase el que sigue");
-        location.reload();
+        ocultar();
       }
     });
 
@@ -303,10 +290,9 @@ async function getPregunta(pregunta: objPregunta){
   var result : preguntaResponse
 
   try {
-    // const response: Response
+    
     const response = await fetch('https://localhost:44362/api/PreguntasCDM', {
       method: 'POST',
-      //mode: 'cors',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         nroPregunta:pregunta.nroPregunta
@@ -315,7 +301,7 @@ async function getPregunta(pregunta: objPregunta){
 
     if (!response.ok) {throw new Error(`Error! status: ${response.status}`);}
 
-    // const result: CreateUserResponse
+    
     const result = (await response.json()) as preguntaResponse;
     const json = JSON.stringify(result, null, 4);
     console.log('result is: ', json);
@@ -329,11 +315,13 @@ async function getPregunta(pregunta: objPregunta){
       console.log('unexpected error: ', error);
       result.pregunta = 'An unexpected error occurred';
     }
-    //result.result = -1;
+    
     return result;
   }
 
 }
+
+
 
 
 

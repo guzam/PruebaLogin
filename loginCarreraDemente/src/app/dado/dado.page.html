@@ -1,13 +1,21 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title id="id_Dado">Dado</ion-title>
+        <ion-item>
+            <ion-thumbnail id="thumbnail" (click)="takePicture()">
+                <img id="imgAvatarIcon" src="../../assets/icon/avatar.svg" />
+                <img id="img" [src]="picture" />
+            </ion-thumbnail>
+
+        </ion-item>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+
     <div class="titulo">
-        <h2>Haga click sobre el dado para hacerlo rodar</h2>
+
+        <h2 id="titulopagina">Haga click sobre la imagen para sacar una foto</h2>
 
     </div>
     <div class="container">
@@ -72,18 +80,6 @@
     </div>
 
     <div class="botones">
-        <div>
-            <select id="selectcolor">
-                <option value="0" disabled selected>Seleccione el color</option>
-                <option value="1">1 - Amarillo</option>
-                <option value="2">2 - Naranja</option>
-                <option value="3">3 - Rosa</option>
-                <option value="4">4 - Marron</option>
-                <option value="5">5 - Verde</option>
-                <option value="6">6 - Celeste</option>
-            </select>
-        </div>
-        <br>
         <button id="btnverpregunta" name="btnverpregunta">VER PREGUNTA</button>
         <br>
         <button id="btnsalir" name="btnsalir">SALIR</button>
@@ -98,7 +94,7 @@
         <option value="3">Opcion 3</option>
     </select>
 
-    
+
     <br>
     <button id="btnselrespuesta" name="btnselrespuesta">SELECCIONAR RESPUESTA</button>
 
